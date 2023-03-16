@@ -7,3 +7,5 @@
 #File: 3-name:Write a script that compiles a C file and creates an executable named cisfun.
 
 #File: 4-puts.c:Write a C program that prints exactly "Programming is like building a multilingual puzzle, followed by a new line.
+
+#5-printf.c:Write a C program that prints exactly with proper grammar, but the outcome is a piece of art,, followed by a new line.
