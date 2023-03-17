@@ -7,3 +7,6 @@
 **stored in the variable n.
 
 #2-print_alphabet.c:Write a program that prints the alphabet in lowercase, followed by a new line.
+
+#File: 3-print_alphabets.c:Write a program that prints the alphabet in
+***lowercase, and then in uppercase, followed by a new line.
