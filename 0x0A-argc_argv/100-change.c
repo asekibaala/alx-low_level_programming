@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
 	if (argc == 1 || argc > 2)
 	{
-		printf("Error:Invalid Coins to get change for money\n");
+		printf("Error\n");
 		return (1);
 	}
 
