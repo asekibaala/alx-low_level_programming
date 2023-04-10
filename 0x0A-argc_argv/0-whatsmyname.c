@@ -7,11 +7,7 @@
  */
 int main(int argc __attribute__((unused)), char *argv[])
 {
-        if (argv[0] != NULL) {
-        printf("%s\n", argv[0]);
-    } else {
-        printf("Error: argv[0] is NULL\n");
-        return 1;
-    }
-    return (0);
+printf("%s\n", argv[0]);
+return (0);    
+
 }
