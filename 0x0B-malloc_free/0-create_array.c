@@ -21,12 +21,10 @@ char *create_array(unsigned int size, char c)
 		return (NULL);
 
 	j = 0;
-	while (j <  size)
-	  {
-	    ptrcr[j] = c;
-	    j++;
-	  }
-
-
-	return (ptrcr);
+while (j <  size)
+{
+ptrcr[j] = c;
+j++;
+}
+return (ptrcr);
 }
