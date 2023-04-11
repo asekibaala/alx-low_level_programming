@@ -34,7 +34,7 @@ free(strout);
 return (NULL);
 }
 k = 0;
-while (k < i;)
+while (k < i)
 {
 strout[k] = s1[k];
 k++;
