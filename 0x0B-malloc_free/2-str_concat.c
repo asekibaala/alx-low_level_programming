@@ -41,7 +41,7 @@ k++;
 }
 limit = j;
 j = 0;
-while (j <= limit;)
+while (j <= limit)
 {
 strout[k] = s2[j];
 k++;
