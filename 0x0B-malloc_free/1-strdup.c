@@ -20,16 +20,13 @@ while (str[l] != '\0')
 l++;
 }
 strout = (char *)malloc(sizeof(char) * (l + 1));
-
 if (strout == NULL)
 return (NULL);
-
- j=0; 
+j = 0;
 while (j < l)
 {
 strout[j] = str[j];
 j++;
 }
-
 return (strout);
 }
