@@ -11,23 +11,23 @@
  */
 void _is_zero(char *argv[])
 {
-	int i, isn1 = 1, isn2 = 1;
+	int i, num1 = 1, num2 = 1;
 
 	for (i = 0; argv[1][i]; i++)
 		if (argv[1][i] != '0')
 		{
-			isn1 = 0;
+			num1 = 0;
 			break;
 		}
 
 	for (i = 0; argv[2][i]; i++)
 		if (argv[2][i] != '0')
 		{
-			isn2 = 0;
+			num2 = 0;
 			break;
 		}
 
-	if (isn1 == 1 || isn2 == 1)
+	if (num1 == 1 || num2 == 1)
 	{
 		printf("0\n");
 		exit(0);
@@ -83,17 +83,17 @@ int _checknum(char *argv[], int n)
  */
 int main(int argc, char *argv[])
 {
-	int num1, num2, lnout, add, addl, i, j, k, ca;
+	int ln1, ln2, lnout, add, addl, i, j, k, ca;
 	char *mul;
 
 	if (argc != 3)
 		printf("Error\n"), exit(98);
-	num1 = _checknum(argv, 1), num2 = _checknum(argv, 2);
-	_is_zero(argv), lnout = num1 + num2, mul = malloc(lnout + 1);
+	ln1 = _checknum(argv, 1), ln2 = _checknum(argv, 2);
+	_is_zero(argv), lnout = ln1 + ln2, mul = malloc(lnout + 1);
 	if (mul == NULL)
 		printf("Error\n"), exit(98);
 	mul = _initialize_array(mul, lnout);
-	k = lnout - 1, i = num1 - 1, j = num2 - 1, ca = addl = 0;
+	k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
 	for (; k >= 0; k--, i--)
 	{
 		if (i < 0)
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 					mul[k - 1] = (add / 10) + '0';
 				mul[k] = (add % 10) + '0';
 			}
-			i = num1 - 1, j--, addl = 0, ca++, k = lnout - (1 + ca);
+			i = ln1 - 1, j--, addl = 0, ca++, k = lnout - (1 + ca);
 		}
 		if (j < 0)
 		{
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 				break;
 			lnout--;
 			free(mul), mul = malloc(lnout + 1), mul = _initialize_array(mul, lnout);
-			k = lnout - 1, i = num1 - 1, j = num2 - 1, ca = addl = 0;
+			k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
 		}
 		if (j >= 0)
 		{
