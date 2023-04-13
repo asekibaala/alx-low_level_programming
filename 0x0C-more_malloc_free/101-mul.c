@@ -83,44 +83,44 @@ int _checknum(char *argv[], int n)
  */
 int main(int argc, char *argv[])
 {
-	int num1, num2,  mul, add, addl, i, j, k, ca;
-	char *nout;
+	int num1, num2, lnout, add, addl, i, j, k, ca;
+	char *mul;
 
 	if (argc != 3)
 		printf("Error\n"), exit(98);
 	num1 = _checknum(argv, 1), num2 = _checknum(argv, 2);
-	_is_zero(argv),  mul= num1 + num2, nout = malloc( mul+ 1);
-	if (nout == NULL)
+	_is_zero(argv), lnout = num1 + num2, mul = malloc(lnout + 1);
+	if (mul == NULL)
 		printf("Error\n"), exit(98);
-	nout = _initialize_array(nout,  mul);
-	k =  mul- 1, i = num1 - 1, j = num2 - 1, ca = addl = 0;
+	mul = _initialize_array(mul, lnout);
+	k = lnout - 1, i = num1 - 1, j = num2 - 1, ca = addl = 0;
 	for (; k >= 0; k--, i--)
 	{
 		if (i < 0)
 		{
 			if (addl > 0)
 			{
-				add = (nout[k] - '0') + addl;
+				add = (mul[k] - '0') + addl;
 				if (add > 9)
-					nout[k - 1] = (add / 10) + '0';
-				nout[k] = (add % 10) + '0';
+					mul[k - 1] = (add / 10) + '0';
+				mul[k] = (add % 10) + '0';
 			}
-			i = num1 - 1, j--, addl = 0, ca++, k =  mul- (1 + ca);
+			i = num1 - 1, j--, addl = 0, ca++, k = lnout - (1 + ca);
 		}
 		if (j < 0)
 		{
-			if (nout[0] != '0')
+			if (mul[0] != '0')
 				break;
-			 mul--;
-			free(nout), nout = malloc( mul+ 1), nout = _initialize_array(nout,  mul);
-			k =  mul- 1, i = num1 - 1, j = num2 - 1, ca = addl = 0;
+			lnout--;
+			free(mul), mul = malloc(lnout + 1), mul = _initialize_array(mul, lnout);
+			k = lnout - 1, i = num1 - 1, j = num2 - 1, ca = addl = 0;
 		}
 		if (j >= 0)
 		{
-			add = ((argv[1][i] - '0') * (argv[2][j] - '0')) + (nout[k] - '0') + addl;
-			addl = add / 10, nout[k] = (add % 10) + '0';
+			add = ((argv[1][i] - '0') * (argv[2][j] - '0')) + (mul[k] - '0') + addl;
+			addl = add / 10, mul[k] = (add % 10) + '0';
 		}
 	}
-	printf("%s\n", nout);
+	printf("%s\n", mul);
 	return (0);
 }
