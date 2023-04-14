@@ -35,13 +35,13 @@ void _is_zero(char *argv[])
 }
 
 /**
- * _initialize_array - set memery to zero in a new array
+ * _in_array - set memery to zero in a new array
  * @ar: char array.
  * @lar: length of the char array.
  *
  * Return: pointer of a char array.
  */
-char *_initialize_array(char *ar, int lar)
+char *_in_array(char *ar, int lar)
 {
 	int i = 0;
 
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 			if (result[0] != '0')
 				break;
 			lnout--;
-			free(result), result = malloc(lnout + 1), result = _initialize_array(result, lnout);
+			free(result), result = malloc(lnout + 1), result = _in_array(result, lnout);
 			k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
 		}
 		if (j >= 0)
