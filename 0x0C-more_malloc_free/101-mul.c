@@ -1,126 +1,88 @@
-#include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 /**
- * _is_zero - determines if any number is zero
- * @argv: argument vector.
+ * _is_positive - checks if a string represents a positive number
+ * @s: string to check
  *
- * Return: no return.
+ * Return: 1 if string is positive number, 0 otherwise
  */
-void _is_zero(char *argv[])
+int _is_positive(const char *s)
 {
-	int i, num1 = 1, num2 = 1;
-
-	for (i = 0; argv[1][i]; i++)
-		if (argv[1][i] != '0')
-		{
-			num1 = 0;
-			break;
-		}
-
-	for (i = 0; argv[2][i]; i++)
-		if (argv[2][i] != '0')
-		{
-			num2 = 0;
-			break;
-		}
-
-	if (num1 == 1 || num2 == 1)
-	{
-		printf("0\n");
-		exit(0);
-	}
+    if (*s == '-')
+        return (0);
+    while (*s)
+    {
+        if (!isdigit(*s))
+            return (0);
+        s++;
+    }
+    return (1);
 }
 
 /**
- * _initialize_array - set memery to zero in a new array
- * @ar: char array.
- * @lar: length of the char array.
+ * _mul - multiplies two positive numbers represented as strings
+ * @num1: first number
+ * @num2: second number
  *
- * Return: pointer of a char array.
+ * Return: pointer to string representing the product of num1 and num2
  */
-char *_initialize_array(char *ar, int lar)
+char *_mul(const char *num1, const char *num2)
 {
-	int i = 0;
+    int len1 = strlen(num1);
+    int len2 = strlen(num2);
+    char *result = calloc(len1 + len2 + 1, sizeof(char));
+    int i, j, carry;
 
-	for (i = 0; i < lar; i++)
-		ar[i] = '0';
-	ar[lar] = '\0';
-	return (ar);
+    for (i = len1 - 1; i >= 0; i--)
+    {
+        carry = 0;
+        for (j = len2 - 1; j >= 0; j--)
+        {
+            int prod = (num1[i] - '0') * (num2[j] - '0') + carry + result[i + j + 1];
+            result[i + j + 1] = prod % 10;
+            carry = prod / 10;
+        }
+        result[i] += carry;
+    }
+
+    while (*result == 0 && *(result + 1))
+        result++;
+
+    for (i = 0; i < len1 + len2; i++)
+        result[i] += '0';
+
+    return (result);
 }
 
 /**
- * _checknum - determines length of the number
- * and checks if number is in base 10.
- * @argv: arguments vector.
- * @n: row of the array.
+ * main - multiplies two positive numbers
+ * @argc: argument count
+ * @argv: argument vector
  *
- * Return: length of the number.
- */
-int _checknum(char *argv[], int n)
-{
-	int ln;
-
-	for (ln = 0; argv[n][ln]; ln++)
-		if (!isdigit(argv[n][ln]))
-		{
-			printf("Error\n");
-			exit(98);
-		}
-
-	return (ln);
-}
-
-/**
- * main - Entry point.
- * program that multiplies two positive numbers.
- * @argc: number of arguments.
- * @argv: arguments vector.
- *
- * Return: 0 - success.
+ * Return: 0 if successful, 98 if there is an error
  */
 int main(int argc, char *argv[])
 {
-	int ln1, ln2, lnout, add, addl, i, j, k, ca;
-	char *mul;
+    if (argc != 3)
+    {
+        printf("Error\n");
+        return (98);
+    }
 
-	if (argc != 3)
-		printf("Error\n"), exit(98);
-	ln1 = _checknum(argv, 1), ln2 = _checknum(argv, 2);
-	_is_zero(argv), lnout = ln1 + ln2, mul = malloc(lnout + 1);
-	if (mul == NULL)
-		printf("Error\n"), exit(98);
-	mul = _initialize_array(mul, lnout);
-	k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
-	for (; k >= 0; k--, i--)
-	{
-		if (i < 0)
-		{
-			if (addl > 0)
-			{
-				add = (mul[k] - '0') + addl;
-				if (add > 9)
-					mul[k - 1] = (add / 10) + '0';
-				mul[k] = (add % 10) + '0';
-			}
-			i = ln1 - 1, j--, addl = 0, ca++, k = lnout - (1 + ca);
-		}
-		if (j < 0)
-		{
-			if (mul[0] != '0')
-				break;
-			lnout--;
-			free(mul), mul = malloc(lnout + 1), mul = _initialize_array(mul, lnout);
-			k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
-		}
-		if (j >= 0)
-		{
-			add = ((argv[1][i] - '0') * (argv[2][j] - '0')) + (mul[k] - '0') + addl;
-			addl = add / 10, mul[k] = (add % 10) + '0';
-		}
-	}
-	printf("%s\n", mul);
-	return (0);
+    if (!_is_positive(argv[1]) || !_is_positive(argv[2]))
+    {
+        printf("Error\n");
+        return (98);
+    }
+
+    char *result = _mul(argv[1], argv[2]);
+
+    printf("%s\n", result);
+
+    free(result);
+
+    return (0);
 }
