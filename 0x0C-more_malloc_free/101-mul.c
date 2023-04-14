@@ -29,7 +29,7 @@ int _is_positive(const char *s)
  *
  * Return: pointer to string representing the product of num1 and num2
  */
-char *_mul(const char *num1, const char *num2)
+char *mul(const char *num1, const char *num2)
 {
     int len1 = strlen(num1);
     int len2 = strlen(num2);
@@ -78,7 +78,8 @@ int main(int argc, char *argv[])
         return (98);
     }
 
-    char *result = _mul(argv[1], argv[2]);
+    char *result;
+    result = mul(argv[1], argv[2]);
 
     printf("%s\n", result);
 
