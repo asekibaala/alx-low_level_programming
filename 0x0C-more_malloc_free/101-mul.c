@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 	_is_zero(argv), lnout = ln1 + ln2, result = malloc(lnout + 1);
 	if (result == NULL)
 		printf("Error\n"), exit(98);
-	result = _initialize_array(result, lnout);
+	result = _in_array(result, lnout);
 	k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
 	for (; k >= 0; k--, i--)
 	{
