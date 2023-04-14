@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-
+#include "main.h"
 /**
  * _is_positive - checks if a string represents a positive number
  * @s: string to check
