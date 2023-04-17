@@ -21,12 +21,12 @@ dog_t *new_dog(char *name, float age, char *owner)
 		free(ptr_dog);
 		return (NULL);
 	}
-	lname = 0; 
+	lname = 0;
 	while (name[lname])
 	{
 		lname++;
 	}
-	lowner = 0; 
+	lowner = 0;
 	while (owner[lowner])
 	{
 		lowner++;
