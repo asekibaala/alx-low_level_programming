@@ -19,13 +19,13 @@ if (array && cmp)
 {
 if (size <= 0)
 return (-1);
-i=0;
-while(i < size)
+i = 0;
+while (i < size)
 {
-if (cmp(array[i]));
-i++;
+if (cmp(array[i]))
 return (i);
+i++;
+}
 }
 return (-1);
-}
 }
